@@ -4,7 +4,7 @@
 \alias{confintrjmv}
 \title{Effect Size Confidence Interval: Pearson's r}
 \usage{
-confintrjmv
+confintrjmv(r = 0.3, N = 400, conf.level = 95)
 }
 \arguments{
 \item{r}{.}

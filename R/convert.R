@@ -9,7 +9,7 @@
 #' @name convert
 #' @rdname convert
 #' @aliases convert convert.r.to.t convert.t.to.r convert.b.to.t convert.t.to.p convert.f.to.p convert.f.to.d convert.chisq.to.p convert.chisq.to.V convert.d.to.logodds convert.d.to.r convert.d.to.t convert.d.to.variance convert.etasq.to.cohensf convert.etasq.to.r convert.f.to.etasq convert.f.to.omegasq convert.fisherz.to.r convert.logodds.to.d convert.logodds.to.r convert.or.to.d convert.or.to.r convert.r.to.d convert.r.to.fisherz convert.r.to.p convert.t.to.d convert.V.to.r convert.cohensf.to.omegasq convert.cohensfsq.to.omegasq convert.means.to.d convert.ncf.to.omegasq convert.omegasq.to.cohensf convert.omegasq.to.cohensfsq convert.omegasq.to.f convert.percentage.to.se
-#' @param chisq,cohensf,cohensfsq,d,etasq,f,logodds,means,omegasq,or,p,r,t,z
+#' @param chisq,cohensf,cohensfsq,d,etasq,f,logodds,means,omegasq,or,p,r,t,z,V
 #' The value of the relevant statistic or effect size.
 #' @param ncf The value of a noncentrality parameter of the F distribution.
 #' @param n,n1,n2,N,ns The number of observations that the r or t value is

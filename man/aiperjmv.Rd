@@ -4,7 +4,7 @@
 \alias{aiperjmv}
 \title{Sample size for accuracy: r}
 \usage{
-aiperjmv
+aiperjmv(r = 0.3, w = 0.1, conf.level = 95)
 }
 \arguments{
 \item{r}{.}

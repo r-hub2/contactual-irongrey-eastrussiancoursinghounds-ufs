@@ -406,3 +406,8 @@ grid.draw.ggProportionPlot <- function(x, ...) {
   ### Draw plot
   grid::grid.draw(x$plot, ...);
 }
+
+
+### Avoiding the R CHECK error
+if(getRversion() >= "2.15.1") { invisible(utils::globalVariables(".data")); };
+

@@ -104,9 +104,9 @@ cohensdCI <- confIntD <- function(d, n, conf.level = .95, plot=FALSE, silent=TRU
                                                                  labels=round(c(cilo,
                                                                                 dValue,
                                                                                 cihi), 2))) +
-        ggplot2::geom_vline(ggplot2::aes(xintercept=.data$cilo), linetype='dashed') +
-        ggplot2::geom_vline(ggplot2::aes(xintercept=.data$dValue), linetype='dashed') +
-        ggplot2::geom_vline(ggplot2::aes(xintercept=.data$cihi), linetype='dashed') +
+        ggplot2::geom_vline(ggplot2::aes(xintercept=cilo), linetype='dashed') +
+        ggplot2::geom_vline(ggplot2::aes(xintercept=dValue), linetype='dashed') +
+        ggplot2::geom_vline(ggplot2::aes(xintercept=cihi), linetype='dashed') +
         ggplot2::geom_ribbon(data=df[df$d >= min(res) & df$d <= max(res), ],
                              ggplot2::aes(ymin = 0, ymax = .data$density),
                              fill='#cadded') +
@@ -176,3 +176,8 @@ print.cohensdCI <- function(x, ...) {
 #   geom_line(aes(y=d2), color='green') +
 #   geom_line(aes(y=t), color='blue') +
 #   theme_bw();
+
+
+
+### Avoiding the R CHECK error
+if(getRversion() >= "2.15.1") { invisible(utils::globalVariables(".data")); };

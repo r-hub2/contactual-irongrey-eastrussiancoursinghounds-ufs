@@ -45,9 +45,9 @@ Imports: digest (>= 0.6.19), diptest (>= 0.75.7), dplyr (>= 0.7.6),
         1.22), pander (>= 0.6.3), plyr (>= 1.8.4), pwr, rmdpartials (>=
         0.5.8), scales (>= 1.0.0), SuppDists (>= 1.1.9)
 Roxygen: list(markdown = TRUE)
-Config/roxygen2/version: 8.0.0
+Config/roxygen2/version: 8.1.1
 NeedsCompilation: no
-Packaged: 2026-11-03 13:03:17 UTC; gj
+Packaged: 2026-11-03 14:37:11 UTC; gjalt
 Author: Gjalt-Jorn Peters [aut, cre] (ORCID:
     <https://orcid.org/0000-0002-0336-9589>),
   Stefan Gruijters [ctb] (ORCID: <https://orcid.org/0000-0003-0141-0071>)

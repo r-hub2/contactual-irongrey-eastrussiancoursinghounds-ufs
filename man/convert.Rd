@@ -129,7 +129,7 @@ based on, or the number of observations in each of the two groups for an
 anova, or the total number of participants when specifying a noncentrality
 parameter.}
 
-\item{chisq, cohensf, cohensfsq, d, etasq, f, logodds, means, omegasq, or, p, r, t, z}{The value of the relevant statistic or effect size.}
+\item{chisq, cohensf, cohensfsq, d, etasq, f, logodds, means, omegasq, or, p, r, t, z, V}{The value of the relevant statistic or effect size.}
 
 \item{minDim}{The smallest of the number of columns and the number of rows
 of the crosstable for which the chisquare is translated to a Cramer's V

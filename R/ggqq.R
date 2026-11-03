@@ -106,7 +106,7 @@ ggqq <- function(x, distribution = "norm", ...,
     df$lower <- fit.value - zz * SE;
   }
 
-  p <- ggplot2::ggplot(df, ggplot2::aes(x=.data$z, y=ord..data$x)) +
+  p <- ggplot2::ggplot(df, ggplot2::aes(x=.data$z, y=.data$ord.x)) +
     ggplot2::geom_point() +
     ggplot2::geom_abline(intercept = coef[1], slope = coef[2]) +
     ggplot2::xlab(theoryLab) +
@@ -123,3 +123,8 @@ ggqq <- function(x, distribution = "norm", ...,
 
   return(p);
 }
+
+
+
+### Avoiding the R CHECK error
+if(getRversion() >= "2.15.1") { invisible(utils::globalVariables(".data")); };

@@ -4,7 +4,7 @@
 \alias{meansDiamondPlotjmv}
 \title{Diamond plot: means}
 \usage{
-meansDiamondPlotjmv
+meansDiamondPlotjmv(data, items, conf.level = 95, showData = TRUE)
 }
 \arguments{
 \item{data}{.}

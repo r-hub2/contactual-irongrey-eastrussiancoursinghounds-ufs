@@ -4,7 +4,7 @@
 \alias{confintdjmv}
 \title{Effect Size Confidence Interval: Cohens's d}
 \usage{
-confintdjmv
+confintdjmv(d = 0.5, n = 128, conf.level = 95)
 }
 \arguments{
 \item{d}{.}

@@ -100,3 +100,8 @@ carelessObject <- function(data,
   return(res);
 
 }
+
+
+
+### Avoiding the R CHECK error
+if(getRversion() >= "2.15.1") { invisible(utils::globalVariables(".data")); };

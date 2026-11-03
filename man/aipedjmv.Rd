@@ -4,7 +4,7 @@
 \alias{aipedjmv}
 \title{Sample size for accuracy: d}
 \usage{
-aipedjmv
+aipedjmv(d = 0.5, w = 0.1, conf.level = 95)
 }
 \arguments{
 \item{d}{.}

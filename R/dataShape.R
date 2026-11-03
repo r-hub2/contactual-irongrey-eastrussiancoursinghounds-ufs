@@ -312,3 +312,8 @@ pander.dataShape <- function(x, digits=x$input$digits, extraNotification=TRUE, .
   }
 
 }
+
+
+
+### Avoiding the R CHECK error
+if(getRversion() >= "2.15.1") { invisible(utils::globalVariables(".data")); };

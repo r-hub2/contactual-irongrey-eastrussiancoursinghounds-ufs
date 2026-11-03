@@ -273,3 +273,8 @@ checkDataIntegrity <- function(x, dat, newValue = NA,
     return(dat);
   }
 }
+
+
+
+### Avoiding the R CHECK error
+if(getRversion() >= "2.15.1") { invisible(utils::globalVariables(".data")); };

@@ -114,9 +114,9 @@ confIntR <- function(r, N, conf.level = .95, plot=FALSE) {
                                                                  labels=round(c(cilo,
                                                                                 rValue,
                                                                                 cihi), 2))) +
-        ggplot2::geom_vline(ggplot2::aes(xintercept=.data$cilo), linetype=dashed) +
-        ggplot2::geom_vline(ggplot2::aes(xintercept=.data$rValue), linetype=dashed) +
-        ggplot2::geom_vline(ggplot2::aes(xintercept=.data$cihi), linetype=dashed) +
+        ggplot2::geom_vline(ggplot2::aes(xintercept=.data$cilo), linetype="dashed") +
+        ggplot2::geom_vline(ggplot2::aes(xintercept=.data$rValue), linetype="dashed") +
+        ggplot2::geom_vline(ggplot2::aes(xintercept=.data$cihi), linetype="dashed") +
         ggplot2::geom_ribbon(data=df[df$r >= min(res) & df$r <= max(res), ],
                              ggplot2::aes(ymin = 0, ymax=.data$density),
                              fill='#cadded') +
@@ -154,3 +154,8 @@ print.confIntR <- function(x, ...) {
   print(unclass(x));
 }
 
+
+
+
+### Avoiding the R CHECK error
+if(getRversion() >= "2.15.1") { invisible(utils::globalVariables(".data")); };

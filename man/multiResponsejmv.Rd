@@ -4,7 +4,7 @@
 \alias{multiResponsejmv}
 \title{Multi Response}
 \usage{
-multiResponsejmv
+multiResponsejmv(data, items, endorsedOption = 1)
 }
 \arguments{
 \item{data}{.}
