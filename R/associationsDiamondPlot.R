@@ -220,8 +220,8 @@ associationsDiamondPlot <- function(dat, covariates, criteria,
                                       x=rep(Inf, length(criteriaLabels)),
                                       ymin=rep(Inf, length(criteriaLabels)),
                                       ymax=rep(Inf, length(criteriaLabels))),
-                           mapping=ggplot2::aes(x=x, ymin=ymin, ymax=ymax,
-                                              fill=colorColumn),
+                           mapping=ggplot2::aes(x=.data$x, ymin=.data$ymin, ymax=.data$ymax,
+                                              fill=.data$colorColumn),
                            show.legend=TRUE) +
       ### Override the colors and legend position
       ggplot2::guides(fill=ggplot2::guide_legend(override.aes=list(fill=criteriaColors[1:length(criteriaLabels)]),

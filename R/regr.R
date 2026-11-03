@@ -227,8 +227,8 @@ regr <- function(formula, data=NULL, conf.level=.95, digits=2,
           ggplot2::theme_bw() +
           ggplot2::geom_segment(data = moderatorDat,
                                 ggplot2::aes(
-                                  x = x, xend = xend,
-                                  y = y, yend = yend,
+                                  x = .data$x, xend = .data$xend,
+                                  y = .data$y, yend = .data$yend,
                                   group = .data[[res$intermediate$variables_namesOnly[3]]],
                                   color = .data[[res$intermediate$variables_namesOnly[3]]]
                                 ),

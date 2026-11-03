@@ -95,7 +95,7 @@ cohensdCI <- confIntD <- function(d, n, conf.level = .95, plot=FALSE, silent=TRU
 
       plot <-
         ggplot2::ggplot(df,
-                        ggplot2::aes(x=d, y=density)) +
+                        ggplot2::aes(x=.data$d, y=.data$density)) +
         ggplot2::theme_bw() +
         ggplot2::theme(axis.title.x.top = ggplot2::element_blank()) +
         ggplot2::scale_x_continuous(sec.axis = ggplot2::dup_axis(breaks=c(cilo,
@@ -104,11 +104,11 @@ cohensdCI <- confIntD <- function(d, n, conf.level = .95, plot=FALSE, silent=TRU
                                                                  labels=round(c(cilo,
                                                                                 dValue,
                                                                                 cihi), 2))) +
-        ggplot2::geom_vline(ggplot2::aes(xintercept=cilo), linetype='dashed') +
-        ggplot2::geom_vline(ggplot2::aes(xintercept=dValue), linetype='dashed') +
-        ggplot2::geom_vline(ggplot2::aes(xintercept=cihi), linetype='dashed') +
+        ggplot2::geom_vline(ggplot2::aes(xintercept=.data$cilo), linetype='dashed') +
+        ggplot2::geom_vline(ggplot2::aes(xintercept=.data$dValue), linetype='dashed') +
+        ggplot2::geom_vline(ggplot2::aes(xintercept=.data$cihi), linetype='dashed') +
         ggplot2::geom_ribbon(data=df[df$d >= min(res) & df$d <= max(res), ],
-                             ggplot2::aes(ymin = 0, ymax=density),
+                             ggplot2::aes(ymin = 0, ymax = .data$density),
                              fill='#cadded') +
         ggplot2::geom_segment(x = min(res),
                               xend = min(res),

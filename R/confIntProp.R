@@ -116,7 +116,7 @@ confIntProp <- function(x, n, conf.level = .95, plot=FALSE) {
     plotDf <- data.frame(x=seq(0, n, by=1),
                          y=stats::dbinom(seq(0, n, by=1), size=n, prob=x/n));
     attr(res, 'plot') <- ggplot2::ggplot(plotDf,
-                                         ggplot2::aes(x=x, y=y)) +
+                                         ggplot2::aes(x=.data$x, y=.data$y)) +
       ggplot2::geom_col() +
       ggplot2::theme_minimal(base_size=16) +
       ggplot2::scale_x_continuous(name="Frequency",

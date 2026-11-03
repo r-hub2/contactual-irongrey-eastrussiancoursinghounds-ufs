@@ -192,19 +192,19 @@ ggEasyBar <- function(data, items = NULL,
       ggplot2::ggplot(data = tmpDf,
                       mapping = ggplot2::aes(x = rep(1:length(items),
                                                             table(tmpDf$var)),
-                                                    y = rel,
-                                                    fill = val,
-                                                    label = label)) +
+                                                    y = .data$rel,
+                                                    fill = .data$val,
+                                                    label = .data$label)) +
       ggplot2::scale_x_continuous(breaks=1:length(items),
                                   labels = biAxisLabels$leftAnchors,
                                   sec.axis=ggplot2::dup_axis(labels=biAxisLabels$rightAnchors));
   } else {
     res <-
       ggplot2::ggplot(data = tmpDf,
-                      mapping = ggplot2::aes(x = var,
-                                                    y = rel,
-                                                    fill = val,
-                                                    label = label));
+                      mapping = ggplot2::aes(x = .data$var,
+                                                    y = .data$rel,
+                                                    fill = .data$val,
+                                                    label = .data$label));
   }
 
   res <- res +

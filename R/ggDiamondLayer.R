@@ -155,20 +155,20 @@ ggDiamondLayer <- function(data,
     if (is.null(cCol)) {
       ### If no color column is passed, just use the general color
       return(ggplot2::geom_polygon(tmpDf,
-                                   mapping=ggplot2::aes(x=x, y=y),
+                                   mapping=ggplot2::aes(x=.data$x, y=.data$y),
                                    fill=color,
                                    color=ifelse(is.na(lineColor),
                                                 color, lineColor), ...));
     } else if (!is.numeric(cCol) && all(unlist(ufs::areColors(cCol)))) {
       ### If a specific color is passed, use that
       return(ggplot2::geom_polygon(tmpDf,
-                                   mapping=ggplot2::aes(x=x, y=y),
+                                   mapping=ggplot2::aes(x=.data$x, y=.data$y),
                                    fill=cCol,
                                    color = ifelse(is.na(lineColor), cCol, lineColor), ...));
     } else {
       ### Otherwise, a column with a color is passed, so extract & use that
       return(ggplot2::geom_polygon(tmpDf,
-                                   mapping=ggplot2::aes(x=x, y=y),
+                                   mapping=ggplot2::aes(x=.data$x, y=.data$y),
                                    fill=x[[cCol]],
                                    color = ifelse(is.na(lineColor), x[[cCol]], lineColor), ...));
     }

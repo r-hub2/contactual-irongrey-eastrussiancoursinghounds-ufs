@@ -43,7 +43,7 @@ irpplot <- function(data,
   res <-
     ggplot2::ggplot(data=data.frame(x=seq_along(colNames),
                                     y=rowData),
-                    mapping=ggplot2::aes(x=x, y=y));
+                    mapping=ggplot2::aes(x=.data$x, y=.data$y));
 
   for (i in missingRows) {
     res <- res +

@@ -272,27 +272,27 @@ ggProportionPlot <- function(dat,
   longDat$itemValueMax <- longDat$itemValue + barHeight;
 
   plot <- ggplot2::ggplot(longDat,
-                          ggplot2::aes(x=PercentageMin,
-                                       y=itemValue));
+                          ggplot2::aes(x=.data$PercentageMin,
+                                       y=.data$itemValue));
 
   if (rank.conf) {
     plot <- plot +
-      ggplot2::geom_rect(ggplot2::aes(xmin=PercentageMin,
-                                      xmax=PercentageMax,
-                                      ymin=itemValueMin,
-                                      ymax=itemValueMax,
-                                      color=ConfidenceRanked,
-                                      fill=ConfidenceRanked),
+      ggplot2::geom_rect(ggplot2::aes(xmin=.data$PercentageMin,
+                                      xmax=.data$PercentageMax,
+                                      ymin=.data$itemValueMin,
+                                      ymax=.data$itemValueMax,
+                                      color=.data$ConfidenceRanked,
+                                      fill=.data$ConfidenceRanked),
                          linetype=linetype,
                          show.legend=FALSE);
   } else {
     plot <- plot +
-      ggplot2::geom_rect(ggplot2::aes(xmin=PercentageMin,
-                                      xmax=PercentageMax,
-                                      ymin=itemValueMin,
-                                      ymax=itemValueMax,
-                                      color=Confidence,
-                                      fill=Confidence),
+      ggplot2::geom_rect(ggplot2::aes(xmin=.data$PercentageMin,
+                                      xmax=.data$PercentageMax,
+                                      ymin=.data$itemValueMin,
+                                      ymax=.data$itemValueMax,
+                                      color=.data$Confidence,
+                                      fill=.data$Confidence),
                          linetype=linetype,
                          show.legend=FALSE);
   }

@@ -121,7 +121,7 @@ normalHist <- function(vector,
 
   ### Plot distribution
   res$plot <- ggplot2::ggplot(data=res$dat,
-                              ggplot2::aes(x=distribution)) +
+                              ggplot2::aes(x=.data$distribution)) +
     ggplot2::xlab(xLabel) +
     ggplot2::ylab(yLabel) +
     ggplot2::geom_histogram(color=NA, fill=histColor, na.rm = TRUE,
@@ -135,7 +135,7 @@ normalHist <- function(vector,
   }
   if (normalCurve) {
     res$plot <- res$plot +
-      ggplot2::geom_line(ggplot2::aes(x=normalX, y=normalY),
+      ggplot2::geom_line(ggplot2::aes(x=.data$normalX, y=.data$normalY),
                          color=normalColor, size=normalLineSize,
                          na.rm = TRUE);
   }

@@ -81,8 +81,8 @@ pCurve_from_d <- function(d,
 
   plot <-
     ggplot2::ggplot(data = df,
-                    mapping = ggplot2::aes(x = pVals,
-                                           y = pProps_rel)) +
+                    mapping = ggplot2::aes(x = .data$pVals,
+                                           y = .data$pProps_rel)) +
     ggplot2::geom_line() +
     ggplot2::geom_point() +
     ggplot2::theme_minimal() +

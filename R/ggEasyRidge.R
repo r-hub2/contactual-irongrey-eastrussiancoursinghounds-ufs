@@ -35,8 +35,8 @@ ggEasyRidge <- function(data, items = NULL,
   ### Actual plot
   res <-
     ggplot2::ggplot(data = tmpDf,
-                    mapping = ggplot2::aes(x=val,
-                                           y=var)) +
+                    mapping = ggplot2::aes(x=.data$val,
+                                           y=.data$var)) +
     ggridges::geom_density_ridges(na.rm=TRUE,
                                   alpha=.25) +
     ggplot2::theme_minimal() +

@@ -63,7 +63,7 @@ ggBoxplot <- function(dat, y = NULL, x = NULL,
       if (labelOutliers) {
         resPlot <- resPlot +
         ggrepel::geom_text_repel(ggplot2::aes(x=1,
-                                              label = outlier),
+                                              label = .data$outlier),
                                  na.rm = TRUE,
                                  color = outlierColor);
       }
@@ -108,7 +108,7 @@ ggBoxplot <- function(dat, y = NULL, x = NULL,
       if (labelOutliers) {
         resPlot <- resPlot +
           ggrepel::geom_text_repel(ggplot2::aes(x=1,
-                                                label = outlier),
+                                                label = .data$outlier),
                                    na.rm = TRUE,
                                    color = outlierColor);
       }
@@ -154,7 +154,7 @@ ggBoxplot <- function(dat, y = NULL, x = NULL,
         theme;
       if (labelOutliers) {
         resPlot <- resPlot +
-          ggrepel::geom_text_repel(ggplot2::aes(label = outlier),
+          ggrepel::geom_text_repel(ggplot2::aes(label = .data$outlier),
                                    na.rm = TRUE,
                                    color=outlierColor);
       }

@@ -98,7 +98,7 @@ regrInfluential <- function(formula, data, retainColors=FALSE, createPlot = TRUE
               ggplot2::theme_bw();
             return(res);
           }),
-          mapping = ggplot2::aes(colour=indexOfInfluentiality)
+          mapping = ggplot2::aes(colour=.data$indexOfInfluentiality)
         );
     }
   }

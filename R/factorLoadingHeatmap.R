@@ -140,10 +140,10 @@ factorLoadingHeatmap <- function(fa,
     ggplot2::ggplot(
       data = tmpDf,
       mapping = ggplot2::aes(
-        x = Factor,
-        y = Variable,
-        color = absLoading,
-        fill = absLoading)
+        x = .data$Factor,
+        y = .data$Variable,
+        color = .data$absLoading,
+        fill = .data$absLoading)
     ) +
       ggplot2::scale_color_viridis_c(direction=-1,
                                      limits = c(0, 1)) +
@@ -167,7 +167,7 @@ factorLoadingHeatmap <- function(fa,
     res <-
       res +
       ggplot2::geom_point(
-        mapping = ggplot2::aes(size = absLoading)
+        mapping = ggplot2::aes(size = .data$absLoading)
       );
   }
 
@@ -175,7 +175,7 @@ factorLoadingHeatmap <- function(fa,
     res <-
       res +
       ggplot2::geom_text(
-        mapping = ggplot2::aes(label = loadingLabel)
+        mapping = ggplot2::aes(label = .data$loadingLabel)
       );
   }
 

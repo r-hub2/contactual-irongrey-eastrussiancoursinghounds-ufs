@@ -15,7 +15,7 @@ rawDataDiamondLayer <- function(dat, items = NULL, itemOrder = 1:length(items),
 
   rawDataLayer <-
     ggplot2::geom_jitter(data=rawData,
-                         mapping=ggplot2::aes(x=value, y=labels),
+                         mapping=ggplot2::aes(x=.data$value, y=.data$labels),
                          size = size,
                          color = dataColor,
                          alpha = dataAlpha,
