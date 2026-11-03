@@ -91,7 +91,7 @@ normalHist generates a histogram with a density curve and a normal density
 curve.
 }
 \examples{
-normalHist(mtcars$mpg)
+ufs::normalHist(mtcars$mpg)
 
 }
 \author{

@@ -180,19 +180,26 @@ These functions are explained in Peters (2017).
 }
 \examples{
 
-meansComparisonDiamondPlot(mtcars,
-                           items=c('disp', 'hp'),
-                           compareBy='vs',
-                           xbreaks=c(100,200, 300, 400));
-meansComparisonDiamondPlot(chickwts,
-                           items='weight',
-                           compareBy='feed',
-                           xbreaks=c(100,200,300,400),
-                           showData=FALSE);
-duoComparisonDiamondPlot(mtcars,
-                         items=c('disp', 'hp'),
-                         compareBy='vs',
-                         xbreaks=c(100,200, 300, 400));
+ufs::meansComparisonDiamondPlot(
+  mtcars,
+  items=c('disp', 'hp'),
+  compareBy='vs',
+  xbreaks=c(100,200, 300, 400));
+
+ufs::meansComparisonDiamondPlot(
+  chickwts,
+  items='weight',
+  compareBy='feed',
+  xbreaks=c(100,200,300,400),
+  showData=FALSE
+);
+
+ufs::duoComparisonDiamondPlot(
+  mtcars,
+  items=c('disp', 'hp'),
+  compareBy='vs',
+  xbreaks=c(100,200, 300, 400)
+);
 
 }
 \references{

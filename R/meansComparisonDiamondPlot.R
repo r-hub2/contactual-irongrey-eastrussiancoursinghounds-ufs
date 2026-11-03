@@ -91,19 +91,26 @@
 #' @keywords hplot
 #' @examples
 #'
-#' meansComparisonDiamondPlot(mtcars,
-#'                            items=c('disp', 'hp'),
-#'                            compareBy='vs',
-#'                            xbreaks=c(100,200, 300, 400));
-#' meansComparisonDiamondPlot(chickwts,
-#'                            items='weight',
-#'                            compareBy='feed',
-#'                            xbreaks=c(100,200,300,400),
-#'                            showData=FALSE);
-#' duoComparisonDiamondPlot(mtcars,
-#'                          items=c('disp', 'hp'),
-#'                          compareBy='vs',
-#'                          xbreaks=c(100,200, 300, 400));
+#' ufs::meansComparisonDiamondPlot(
+#'   mtcars,
+#'   items=c('disp', 'hp'),
+#'   compareBy='vs',
+#'   xbreaks=c(100,200, 300, 400));
+#'
+#' ufs::meansComparisonDiamondPlot(
+#'   chickwts,
+#'   items='weight',
+#'   compareBy='feed',
+#'   xbreaks=c(100,200,300,400),
+#'   showData=FALSE
+#' );
+#'
+#' ufs::duoComparisonDiamondPlot(
+#'   mtcars,
+#'   items=c('disp', 'hp'),
+#'   compareBy='vs',
+#'   xbreaks=c(100,200, 300, 400)
+#' );
 #'
 #' @export meansComparisonDiamondPlot
 meansComparisonDiamondPlot <- function(dat, items = NULL,
@@ -239,8 +246,10 @@ meansComparisonDiamondPlot <- function(dat, items = NULL,
                              x=rep(Inf, length(compareByLabels)),
                              ymin=rep(Inf, length(compareByLabels)),
                              ymax=rep(Inf, length(compareByLabels))),
-                  mapping=ggplot2::aes_string(x='x', ymin='ymin', ymax='ymax',
-                                     fill='colorColumn'),
+                  mapping=ggplot2::aes(x = x,
+                                       ymin = ymin,
+                                       ymax = ymax,
+                                       fill = colorColumn),
                   show.legend=TRUE) +
       ### Override the colors and legend position
 #      ggplot2::guides(fill=ggplot2::guide_legend(override.aes=list(fill=comparisonColors[1:length(compareByLabels)]),

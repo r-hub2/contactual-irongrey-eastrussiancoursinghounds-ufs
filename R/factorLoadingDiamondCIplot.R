@@ -93,8 +93,8 @@ factorLoadingDiamondCIplot <- function(fa,
 
   ### Create empty plot
   res <- ggplot2::ggplot(tmpDf,
-                         ggplot2::aes_string(x=-Inf, ymin=-Inf, ymax=-Inf,
-                                             color='Factor', fill='Factor')) +
+                         ggplot2::aes(x=-Inf, ymin=-Inf, ymax=-Inf,
+                                             color=Factor, fill=Factor)) +
     ggplot2::geom_ribbon() +
     ggplot2::geom_vline(xintercept=0) +
     ggplot2::scale_color_manual(values=colors) +

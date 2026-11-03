@@ -14,13 +14,13 @@
 #' @seealso [ggplot2::geom_bar()]
 #' @examples
 #'
-#' ggBarChart(mtcars$cyl);
+#' ufs::ggBarChart(mtcars$cyl);
 #'
 #' @export ggBarChart
 ggBarChart <- function(vector, plotTheme = ggplot2::theme_bw(), ...) {
   varName <- extractVarName(deparse(substitute(vector)));
   tmpDf <- as.data.frame(stats::na.omit(vector));
   names(tmpDf) <- varName;
-  ggplot2::ggplot(tmpDf, ggplot2::aes_string(x=varName)) +
+  ggplot2::ggplot(tmpDf, ggplot2::aes(x=.data[[varName]])) +
     ggplot2::geom_bar(...) + plotTheme;
 }

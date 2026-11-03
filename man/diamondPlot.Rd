@@ -91,20 +91,24 @@ tmpDf <- data.frame(lo = c(1, 2, 3),
                     color = c('green', 'red', 'blue'));
 
 ### A simple diamond plot
-diamondPlot(tmpDf);
+ufs::diamondPlot(tmpDf);
 
 ### A diamond plot using the specified colours
-diamondPlot(tmpDf, colorCol = 4);
+ufs::diamondPlot(tmpDf, colorCol = 4);
 
 ### A diamond plot using automatically generated colours
 ### using a gradient
-diamondPlot(tmpDf, generateColors=c('green', 'red'));
+ufs::diamondPlot(
+  tmpDf,
+  generateColors=c('green', 'red'));
 
 ### A diamond plot using automatically generated colours
 ### using a gradient, specifying the minimum and maximum
 ### possible values that can be attained
-diamondPlot(tmpDf, generateColors=c('green', 'red'),
-            fullColorRange=c(1, 10));
+ufs::diamondPlot(
+  tmpDf,
+  generateColors=c('green', 'red'),
+  fullColorRange=c(1, 10));
 
 
 }

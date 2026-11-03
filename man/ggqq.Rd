@@ -76,7 +76,7 @@ turn based on the \code{qqPlot()} function from the \code{car} package.
 }
 \examples{
 
-ggqq(mtcars$mpg);
+ufs::ggqq(mtcars$mpg);
 
 }
 \author{

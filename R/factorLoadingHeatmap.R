@@ -1,15 +1,12 @@
 #' Two-dimensional visualisation of factor analyses
 #'
-#' This function uses the [diamondPlot()] to visualise the results of
-#' a factor analyses. Because the factor loadings computed in factor analysis
-#' are point estimates, they may vary from sample to sample. The factor
-#' loadings for any given sample are usually not relevant; samples are but
-#' means to study populations, and so, researchers are usually interested in
-#' population values for the factor loadings. However, tables with lots of
+#' This function produces a visualisation with dots indicating factor loadings.
+#' Tables with lots of
 #' loadings can quickly become confusing and intimidating. This function aims
 #' to facilitate working with and interpreting factor analysis based on
 #' confidence intervals by visualising the factor loadings and their confidence
-#' intervals.
+#' intervals. For a better visualisation, look
+#' at [[[ufs::factorLoadingDiamondCIplot()]].
 #'
 #'
 #' @param fa The object produced by the [psych::fa()] function from the
@@ -23,7 +20,7 @@
 #' colourblind readers.
 #' @param labels The labels to use for the items (on the Y axis).
 #' @param showLoadings Whether to show the factor loadings or not.
-#' @param heatmap Whether to produce a heatmap or use diamond plots.
+#' @param heatmap Whether to produce a heatmap or use dots.
 #' @param theme The ggplot2 theme to use.
 #' @param sortAlphabetically Whether to sort the items alphabetically.
 #' @param digits Number of digits to round to.
@@ -49,20 +46,28 @@
 #' ###  may generate warnings because of the bootstrapping of
 #' ###  the confidence intervals)
 #'
-#' factorLoadingHeatmap(psych::fa(psych::Bechtoldt,
-#'                                nfactors=2,
-#'                                n.iter=50,
-#'                                n.obs=200));
+#' ufs::factorLoadingHeatmap(
+#'   psych::fa(
+#'     psych::Bechtoldt,
+#'     nfactors=2,
+#'     n.iter=50,
+#'     n.obs=200
+#'   )
+#' );
 #'
 #' ### And using a lower alpha value for the diamonds to
 #' ### make them more transparent
 #'
-#' factorLoadingHeatmap(psych::fa(psych::Bechtoldt,
-#'                                nfactors=2,
-#'                                n.iter=50,
-#'                                n.obs=200),
-#'                      alpha=.5,
-#'                      size=1);
+#' ufs::factorLoadingHeatmap(
+#'   psych::fa(
+#'     psych::Bechtoldt,
+#'     nfactors=2,
+#'     n.iter=50,
+#'     n.obs=200),
+#'   alpha=.5,
+#'   size=1
+#' );
+#'
 #' }
 #'
 #' @export
@@ -134,11 +139,11 @@ factorLoadingHeatmap <- function(fa,
   res <-
     ggplot2::ggplot(
       data = tmpDf,
-      mapping = ggplot2::aes_string(
-        x = "Factor",
-        y = "Variable",
-        color = 'absLoading',
-        fill = 'absLoading')
+      mapping = ggplot2::aes(
+        x = Factor,
+        y = Variable,
+        color = absLoading,
+        fill = absLoading)
     ) +
       ggplot2::scale_color_viridis_c(direction=-1,
                                      limits = c(0, 1)) +
@@ -162,7 +167,7 @@ factorLoadingHeatmap <- function(fa,
     res <-
       res +
       ggplot2::geom_point(
-        mapping = ggplot2::aes_string(size = 'absLoading')
+        mapping = ggplot2::aes(size = absLoading)
       );
   }
 
@@ -170,7 +175,7 @@ factorLoadingHeatmap <- function(fa,
     res <-
       res +
       ggplot2::geom_text(
-        mapping = ggplot2::aes_string(label = 'loadingLabel')
+        mapping = ggplot2::aes(label = loadingLabel)
       );
   }
 

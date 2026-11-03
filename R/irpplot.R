@@ -20,13 +20,13 @@
 #'
 #' ### Show the individual responses for
 #' ### the tenth participant
-#' irpplot(dat, 10, 1:20);
+#' ufs::irpplot(dat, 10, 1:20);
 #'
 #' ### Set some missing values
 #' dat[10, c(1, 5, 15)] <- NA;
 #'
 #' ### Show the individual responses again
-#' irpplot(dat, 10, 1:20);
+#' ufs::irpplot(dat, 10, 1:20);
 irpplot <- function(data,
                     row,
                     columns,
@@ -43,7 +43,7 @@ irpplot <- function(data,
   res <-
     ggplot2::ggplot(data=data.frame(x=seq_along(colNames),
                                     y=rowData),
-                    mapping=ggplot2::aes_string(x='x', y='y'));
+                    mapping=ggplot2::aes(x=x, y=y));
 
   for (i in missingRows) {
     res <- res +

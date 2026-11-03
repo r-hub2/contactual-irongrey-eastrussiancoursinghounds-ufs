@@ -183,9 +183,9 @@ BAC_plot <- function(data,
   plot <-
     ggplot2::ggplot(
       data = dat,
-      mapping = ggplot2::aes_string(x = 'means',
-                                    y = 'diffs',
-                                    color = 'classification')
+      mapping = ggplot2::aes(x = means,
+                             y = diffs,
+                             color = classification)
     ) +
     ggplot2::geom_point(
       size = pointSize

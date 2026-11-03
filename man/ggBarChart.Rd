@@ -22,7 +22,7 @@ bar chart.
 }
 \examples{
 
-ggBarChart(mtcars$cyl);
+ufs::ggBarChart(mtcars$cyl);
 
 }
 \seealso{

@@ -84,50 +84,56 @@
 #' ggProportionPlot(mtcars, items=c('cyl'));
 #'
 #' \dontrun{
-#' ### Not running these to save time during package building/checking
+#' ### These can take quite a lot of time to run
 #'
 #' ### We can also compare 4 to 6:
-#' ggProportionPlot(mtcars, items=c('cyl'),
-#'                  hiCategory=6);
+#' ufs::ggProportionPlot(
+#'   mtcars, items=c('cyl'),
+#'   hiCategory=6);
 #'
 #' ### Now compared to total records, instead of to
 #' ### highest value (hiCategory is ignored then)
-#' ggProportionPlot(mtcars, items=c('cyl'),
-#'                  compareHiToLo=FALSE);
+#' ufs::ggProportionPlot(
+#'   mtcars, items=c('cyl'),
+#'   compareHiToLo=FALSE);
 #'
 #' ### And for 6 cylinders:
-#' ggProportionPlot(mtcars, items=c('cyl'),
+#' ufs::ggProportionPlot(mtcars, items=c('cyl'),
 #'                  loCategory=6, compareHiToLo=FALSE);
 #'
 #' ### And for 8 cylinders:
-#' ggProportionPlot(mtcars, items=c('cyl'),
-#'                  loCategory=8, compareHiToLo=FALSE);
+#' ufs::ggProportionPlot(
+#'   mtcars, items=c('cyl'),
+#'   loCategory=8, compareHiToLo=FALSE);
 #'
 #' ### And for 8 cylinders with different labels
-#' ggProportionPlot(mtcars, items=c('cyl'),
-#'                  loCategory=8,
-#'                  subQuestions='Cylinders',
-#'                  leftAnchors="Eight",
-#'                  rightAnchors="Four\nor\nsix",
-#'                  compareHiToLo=FALSE);
+#' ufs::ggProportionPlot(
+#'   mtcars, items=c('cyl'),
+#'   loCategory=8,
+#'   subQuestions='Cylinders',
+#'   leftAnchors="Eight",
+#'   rightAnchors="Four\nor\nsix",
+#'   compareHiToLo=FALSE);
 #'
 #' ### ... And showing the diamonds for the confidence intervals
-#' ggProportionPlot(mtcars, items=c('cyl'),
-#'                  loCategory=8,
-#'                  subQuestions='Cylinders',
-#'                  leftAnchors="Eight",
-#'                  rightAnchors="Four\nor\nsix",
-#'                  compareHiToLo=FALSE,
-#'                  showDiamonds=TRUE);
+#' ufs::ggProportionPlot(
+#'   mtcars, items=c('cyl'),
+#'   loCategory=8,
+#'   subQuestions='Cylinders',
+#'   leftAnchors="Eight",
+#'   rightAnchors="Four\nor\nsix",
+#'   compareHiToLo=FALSE,
+#'   showDiamonds=TRUE);
 #' }
 #'
 #' ### Using less steps for the confidence levels and changing
 #' ### the fill colours
-#' ggProportionPlot(mtcars,
-#'                  items=c('vs', 'am'),
-#'                  showDiamonds = TRUE,
-#'                  scale_fill = c("#B63679FF", "#FCFDBFFF"),
-#'                  conf.steps=seq(from=0.0001, to=.9999, by=.2));
+#' ufs::ggProportionPlot(
+#'   mtcars,
+#'   items=c('vs', 'am'),
+#'   showDiamonds = TRUE,
+#'   scale_fill = c("#B63679FF", "#FCFDBFFF"),
+#'   conf.steps=seq(from=0.0001, to=.9999, by=.2));
 #'
 #' @rdname ggProportionPlot
 #' @export ggProportionPlot
@@ -266,20 +272,31 @@ ggProportionPlot <- function(dat,
   longDat$itemValueMax <- longDat$itemValue + barHeight;
 
   plot <- ggplot2::ggplot(longDat,
-                          ggplot2::aes_string(x='PercentageMin',
-                                              y='itemValue')) +
-    ggplot2::geom_rect(ggplot2::aes_string(xmin='PercentageMin',
-                                           xmax='PercentageMax',
-                                           ymin='itemValueMin',
-                                           ymax='itemValueMax',
-                                           color=ifelse(rank.conf,
-                                                        'ConfidenceRanked',
-                                                        'Confidence'),
-                                           fill=ifelse(rank.conf,
-                                                       'ConfidenceRanked',
-                                                       'Confidence')),
-                       linetype=linetype,
-                       show.legend=FALSE) +
+                          ggplot2::aes(x=PercentageMin,
+                                       y=itemValue));
+
+  if (rank.conf) {
+    plot <- plot +
+      ggplot2::geom_rect(ggplot2::aes(xmin=PercentageMin,
+                                      xmax=PercentageMax,
+                                      ymin=itemValueMin,
+                                      ymax=itemValueMax,
+                                      color=ConfidenceRanked,
+                                      fill=ConfidenceRanked),
+                         linetype=linetype,
+                         show.legend=FALSE);
+  } else {
+    plot <- plot +
+      ggplot2::geom_rect(ggplot2::aes(xmin=PercentageMin,
+                                      xmax=PercentageMax,
+                                      ymin=itemValueMin,
+                                      ymax=itemValueMax,
+                                      color=Confidence,
+                                      fill=Confidence),
+                         linetype=linetype,
+                         show.legend=FALSE);
+  }
+  plot <- plot +
     ggplot2::scale_y_continuous(breaks=sort(unique(longDat$itemValue)),
                                 minor_breaks = NULL,
                                 labels=leftAnchors,
@@ -350,6 +367,7 @@ ggProportionPlot <- function(dat,
                                       name = "subquestions");
 
   if (returnPlotOnly) {
+    class(fullPlot) <- c("ggProportionPlot_gtable", class(fullPlot));
     return(fullPlot);
   } else {
     res <- list(plot = fullPlot,
@@ -358,6 +376,16 @@ ggProportionPlot <- function(dat,
     class(res) <- c('ggProportionPlot');
     return(res);
   }
+}
+
+#' @method print ggProportionPlot_gtable
+#' @rdname ggProportionPlot
+#' @export
+print.ggProportionPlot_gtable <- function(x, ...) {
+  ### Empty canvas
+  grid::grid.newpage();
+  ### Draw plot
+  grid::grid.draw(x);
 }
 
 #' @method print ggProportionPlot

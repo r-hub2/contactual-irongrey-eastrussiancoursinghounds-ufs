@@ -106,7 +106,7 @@ freq <- function(vector, digits = 1, nsmall=1, transposed=FALSE, round=1,
     res$barChart <- ufs::ggBarChart(as.factor(res$intermediate$vector.valid),
                                               plotTheme=plotTheme) +
       ggplot2::xlab(varName);
-    # ggplot(tmpDf, aes_string(x=varName)) +
+    # ggplot(tmpDf, aes(x=varName)) +
     # geom_bar() + plotTheme;
     #              scale_x_discrete(breaks=levels(res$intermediate$vector.valid),
     #                               labels=levels(res$intermediate$vector.valid),

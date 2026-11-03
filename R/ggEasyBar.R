@@ -44,18 +44,36 @@
 #' @rdname ggEasyPlots
 #' @examples
 #'
-#' ggEasyBar(mtcars, c('gear', 'carb'));
-#' ggEasyRidge(mtcars, c('disp', 'hp'));
+#' ufs::ggEasyBar(
+#'   mtcars,
+#'   c('gear', 'carb')
+#' );
+#'
+#' ufs::ggEasyRidge(
+#'   mtcars,
+#'   c('disp', 'hp')
+#' );
 #'
 #' ### When plotting single questions, if you want to show the anchors:
-#' ggEasyBar(mtcars, c('gear'),
-#'           biAxisLabels=list(leftAnchors="Fewer",
-#'                             rightAnchors="More"));
+#' ufs::ggEasyBar(
+#'   mtcars,
+#'   c('gear'),
+#'   biAxisLabels = list(
+#'     leftAnchors="Fewer",
+#'     rightAnchors="More"
+#'   )
+#' );
 #'
 #' ### Or for multiple questions (for e.g. semantic differentials):
-#' ggEasyBar(mtcars, c('gear', 'carb'),
-#'           biAxisLabels=list(leftAnchors=c("Fewer", "Lesser"),
-#'                             rightAnchors=c("More", "Greater")));
+#' ufs::ggEasyBar(
+#'   mtcars,
+#'   c('gear', 'carb'),
+#'   biAxisLabels = list(
+#'     leftAnchors = c("Fewer", "Lesser"),
+#'     rightAnchors = c("More", "Greater")
+#'   )
+#' );
+#'
 #' @export
 ggEasyBar <- function(data, items = NULL,
                       labels = NULL, sortByMean = TRUE,
@@ -172,21 +190,21 @@ ggEasyBar <- function(data, items = NULL,
       (length(biAxisLabels$rightAnchors) == length(items))) {
     res <-
       ggplot2::ggplot(data = tmpDf,
-                      mapping = ggplot2::aes_string(x = rep(1:length(items),
+                      mapping = ggplot2::aes(x = rep(1:length(items),
                                                             table(tmpDf$var)),
-                                                    y = 'rel',
-                                                    fill = 'val',
-                                                    label = 'label')) +
+                                                    y = rel,
+                                                    fill = val,
+                                                    label = label)) +
       ggplot2::scale_x_continuous(breaks=1:length(items),
                                   labels = biAxisLabels$leftAnchors,
                                   sec.axis=ggplot2::dup_axis(labels=biAxisLabels$rightAnchors));
   } else {
     res <-
       ggplot2::ggplot(data = tmpDf,
-                      mapping = ggplot2::aes_string(x = 'var',
-                                                    y = 'rel',
-                                                    fill = 'val',
-                                                    label = 'label'));
+                      mapping = ggplot2::aes(x = var,
+                                                    y = rel,
+                                                    fill = val,
+                                                    label = label));
   }
 
   res <- res +

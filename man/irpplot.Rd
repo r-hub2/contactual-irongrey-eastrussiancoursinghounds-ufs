@@ -40,11 +40,11 @@ dat <- ufs::bfi;
 
 ### Show the individual responses for
 ### the tenth participant
-irpplot(dat, 10, 1:20);
+ufs::irpplot(dat, 10, 1:20);
 
 ### Set some missing values
 dat[10, c(1, 5, 15)] <- NA;
 
 ### Show the individual responses again
-irpplot(dat, 10, 1:20);
+ufs::irpplot(dat, 10, 1:20);
 }

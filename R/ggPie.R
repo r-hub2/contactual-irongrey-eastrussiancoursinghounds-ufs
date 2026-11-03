@@ -29,7 +29,7 @@ ggPie <- function (vector, scale_fill = ggplot2::scale_fill_viridis_d()) {
 
   return(
     ggplot2::ggplot(data = dat,
-                    ggplot2::aes_string(x=factor(1), y=totals, fill=by)) +
+                    ggplot2::aes(x=factor(1), y=.data[[totals]], fill=.data[[by]])) +
       ggplot2::geom_bar(stat='identity', color='black') +
       # removes black borders from legend
       ggplot2::guides(fill=ggplot2::guide_legend(override.aes=list(color=NA))) +

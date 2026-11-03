@@ -1,4 +1,5 @@
 #' @rdname cohensDdistribution
+#' @aliases confIntD cohensdCI
 #' @export cohensdCI
 #' @export confIntD
 cohensdCI <- confIntD <- function(d, n, conf.level = .95, plot=FALSE, silent=TRUE) {
@@ -94,7 +95,7 @@ cohensdCI <- confIntD <- function(d, n, conf.level = .95, plot=FALSE, silent=TRU
 
       plot <-
         ggplot2::ggplot(df,
-                        ggplot2::aes_string(x='d', y='density')) +
+                        ggplot2::aes(x=d, y=density)) +
         ggplot2::theme_bw() +
         ggplot2::theme(axis.title.x.top = ggplot2::element_blank()) +
         ggplot2::scale_x_continuous(sec.axis = ggplot2::dup_axis(breaks=c(cilo,
@@ -107,7 +108,7 @@ cohensdCI <- confIntD <- function(d, n, conf.level = .95, plot=FALSE, silent=TRU
         ggplot2::geom_vline(ggplot2::aes(xintercept=dValue), linetype='dashed') +
         ggplot2::geom_vline(ggplot2::aes(xintercept=cihi), linetype='dashed') +
         ggplot2::geom_ribbon(data=df[df$d >= min(res) & df$d <= max(res), ],
-                             ggplot2::aes_string(ymin = 0, ymax='density'),
+                             ggplot2::aes(ymin = 0, ymax=density),
                              fill='#cadded') +
         ggplot2::geom_segment(x = min(res),
                               xend = min(res),

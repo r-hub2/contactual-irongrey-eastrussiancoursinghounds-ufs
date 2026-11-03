@@ -3,6 +3,7 @@
 %   R/pwr.cohensdCI.R
 \name{cohensdCI}
 \alias{cohensdCI}
+\alias{confIntD}
 \alias{cohensDdistribution}
 \alias{dCohensd}
 \alias{pCohensd}
@@ -15,9 +16,10 @@
 \alias{pdExtreme}
 \alias{pdMild}
 \alias{pdInterval}
-\alias{confIntD}
 \alias{pwr.cohensdCI}
 \alias{pwr.confIntd}
+\alias{dCOhensd}
+\alias{pInterval}
 \title{The distribution of Cohen's \emph{d}}
 \usage{
 cohensdCI(d, n, conf.level = 0.95, plot = FALSE, silent = TRUE)
@@ -141,40 +143,40 @@ Peters & Crutzen (2017).
 ### showing this visually: this clearly shows
 ### how wildly our Cohen's d value can vary
 ### from sample to sample.
-cohensdCI(.5, n=200, plot=TRUE);
+ufs::cohensdCI(.5, n=200, plot=TRUE);
 
 ### How many participants would we need if we
 ### would want a more accurate estimate, say
 ### with a maximum confidence interval width
 ### of .2?
-pwr.cohensdCI(.5, w=.1);
+ufs::pwr.cohensdCI(.5, w=.1);
 
 ### Show that 'sampling distribution':
-cohensdCI(.5,
-          n=pwr.cohensdCI(.5, w=.1),
-          plot=TRUE);
+ufs::cohensdCI(.5,
+               n=pwr.cohensdCI(.5, w=.1),
+               plot=TRUE);
 
 ### Generate 10 random Cohen's d values
-rCohensd(10, 20, populationD = .5);
+ufs::rCohensd(10, 20, populationD = .5);
 
 ### Probability of findings a Cohen's d smaller than
 ### .5 if it's 0 in the population (i.e. under the
 ### null hypothesis)
-pCohensd(.5, 64);
+ufs::pCohensd(.5, 64);
 
 ### Probability of findings a Cohen's d larger than
 ### .5 if it's 0 in the population (i.e. under the
 ### null hypothesis)
-1 - pCohensd(.5, 64);
+1 - ufs::pCohensd(.5, 64);
 
 ### Probability of findings a Cohen's d more extreme
 ### than .5 if it's 0 in the population (i.e. under
 ### the null hypothesis)
-pdExtreme(.5, 64);
+ufs::pdExtreme(.5, 64);
 
 ### Probability of findings a Cohen's d more extreme
 ### than .5 if it's 0.2 in the population.
-pdExtreme(.5, 64, populationD = .2);
+ufs::pdExtreme(.5, 64, populationD = .2);
 
 }
 \references{

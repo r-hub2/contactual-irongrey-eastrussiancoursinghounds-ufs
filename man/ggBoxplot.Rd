@@ -50,10 +50,10 @@ Exchange (Cross Validated; see
 \examples{
 
 ### A box plot for miles per gallon in the mtcars dataset:
-ggBoxplot(mtcars$mpg);
+ufs::ggBoxplot(mtcars$mpg);
 
 ### And separate for each level of 'cyl' (number of cylinder):
-ggBoxplot(mtcars, y='mpg', x='cyl');
+ufs::ggBoxplot(mtcars, y='mpg', x='cyl');
 
 }
 \seealso{

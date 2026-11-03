@@ -39,11 +39,11 @@
 #
 #   res <-
 #     ggplot2::ggplot(dat,
-#                     ggplot2::aes_string(x='xVector',
+#                     ggplot2::aes(x=xVector,
 #                                         y=1,
-#                                         group=category,
-#                                         color=color,
-#                                         shape=symbol)) +
+#                                         group=.data[[category]],
+#                                         color=.data[[color]],
+#                                         shape=.data[[symbol]])) +
 #     ggplot2::geom_point(position=ggplot2::position_stack(reverse=TRUE),
 #                         size=10) +
 #     scale_shape +

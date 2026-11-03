@@ -169,7 +169,7 @@ associationsDiamondPlot <- function(dat, covariates, criteria,
                           lineColor=ifelse(length(criteria) == 1, criterionColor, criteriaColors[i]),
                           alpha = ifelse(length(criteria) == 1, singleAlpha, multiAlpha),
                           returnLayerOnly = TRUE,
-                          size=lineSize, ...);
+                          linewidth=lineSize, ...);
       } else {
         res$intermediate$diamondLayers[[criteriaLabels[i]]] <-
           ufs::diamondPlot(res$intermediate$dat[[criteriaLabels[i]]],
@@ -177,7 +177,7 @@ associationsDiamondPlot <- function(dat, covariates, criteria,
                            yLabels = labels,
                            alpha = ifelse(length(criteria) == 1, singleAlpha, multiAlpha),
                            returnLayerOnly = TRUE,
-                           size=lineSize, ...);
+                           linewidth=lineSize, ...);
       }
     } else {
       res$intermediate$diamondLayers[[criteriaLabels[i]]] <-
@@ -187,7 +187,7 @@ associationsDiamondPlot <- function(dat, covariates, criteria,
                          colorCol=ifelse(length(criteria) == 1, criterionColor, criteriaColors[i]),
                          alpha = ifelse(length(criteria) == 1, singleAlpha, multiAlpha),
                          returnLayerOnly = TRUE,
-                         size=lineSize, ...);
+                         linewidth=lineSize, ...);
     }
   }
 
@@ -220,8 +220,8 @@ associationsDiamondPlot <- function(dat, covariates, criteria,
                                       x=rep(Inf, length(criteriaLabels)),
                                       ymin=rep(Inf, length(criteriaLabels)),
                                       ymax=rep(Inf, length(criteriaLabels))),
-                           mapping=ggplot2::aes_string(x='x', ymin='ymin', ymax='ymax',
-                                              fill='colorColumn'),
+                           mapping=ggplot2::aes(x=x, ymin=ymin, ymax=ymax,
+                                              fill=colorColumn),
                            show.legend=TRUE) +
       ### Override the colors and legend position
       ggplot2::guides(fill=ggplot2::guide_legend(override.aes=list(fill=criteriaColors[1:length(criteriaLabels)]),

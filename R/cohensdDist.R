@@ -102,43 +102,44 @@
 #' ### showing this visually: this clearly shows
 #' ### how wildly our Cohen's d value can vary
 #' ### from sample to sample.
-#' cohensdCI(.5, n=200, plot=TRUE);
+#' ufs::cohensdCI(.5, n=200, plot=TRUE);
 #'
 #' ### How many participants would we need if we
 #' ### would want a more accurate estimate, say
 #' ### with a maximum confidence interval width
 #' ### of .2?
-#' pwr.cohensdCI(.5, w=.1);
+#' ufs::pwr.cohensdCI(.5, w=.1);
 #'
 #' ### Show that 'sampling distribution':
-#' cohensdCI(.5,
-#'           n=pwr.cohensdCI(.5, w=.1),
-#'           plot=TRUE);
+#' ufs::cohensdCI(.5,
+#'                n=pwr.cohensdCI(.5, w=.1),
+#'                plot=TRUE);
 #'
 #' ### Generate 10 random Cohen's d values
-#' rCohensd(10, 20, populationD = .5);
+#' ufs::rCohensd(10, 20, populationD = .5);
 #'
 #' ### Probability of findings a Cohen's d smaller than
 #' ### .5 if it's 0 in the population (i.e. under the
 #' ### null hypothesis)
-#' pCohensd(.5, 64);
+#' ufs::pCohensd(.5, 64);
 #'
 #' ### Probability of findings a Cohen's d larger than
 #' ### .5 if it's 0 in the population (i.e. under the
 #' ### null hypothesis)
-#' 1 - pCohensd(.5, 64);
+#' 1 - ufs::pCohensd(.5, 64);
 #'
 #' ### Probability of findings a Cohen's d more extreme
 #' ### than .5 if it's 0 in the population (i.e. under
 #' ### the null hypothesis)
-#' pdExtreme(.5, 64);
+#' ufs::pdExtreme(.5, 64);
 #'
 #' ### Probability of findings a Cohen's d more extreme
 #' ### than .5 if it's 0.2 in the population.
-#' pdExtreme(.5, 64, populationD = .2);
+#' ufs::pdExtreme(.5, 64, populationD = .2);
 #'
 #' @name cohensDdistribution
 #' @rdname cohensDdistribution
+#' @aliases dCOhensd dd
 #' @export dCohensd
 #' @export dd
 dCohensd <- dd <- function(x, df=NULL,
@@ -186,6 +187,7 @@ dCohensd <- dd <- function(x, df=NULL,
 
 #' @export pCohensd
 #' @export pd
+#' @aliases pd
 #' @rdname cohensDdistribution
 pCohensd <- pd <- function(q, df, populationD = 0, lower.tail=TRUE) {
   ### Return p-value for given Cohen's d
@@ -196,6 +198,7 @@ pCohensd <- pd <- function(q, df, populationD = 0, lower.tail=TRUE) {
 
 #' @export qCohensd
 #' @export qd
+#' @aliases qd
 #' @rdname cohensDdistribution
 qCohensd <- qd <- function(p, df, populationD = 0, lower.tail=TRUE) {
   ### Return Cohen's d for given p-value
@@ -208,6 +211,7 @@ qCohensd <- qd <- function(p, df, populationD = 0, lower.tail=TRUE) {
 
 #' @export rCohensd
 #' @export rd
+#' @aliases rd rCohensd
 #' @rdname cohensDdistribution
 rCohensd <- rd <- function(n, df, populationD = 0) {
   ### Return random Cohen's d value(s)
@@ -218,6 +222,7 @@ rCohensd <- rd <- function(n, df, populationD = 0) {
 }
 
 #' @export
+#' @aliases pInterval
 #' @rdname cohensDdistribution
 pdInterval <- function(ds, n, populationD = 0) {
   return(pd(max(ds), df=n - 2, populationD=populationD) -
@@ -225,6 +230,7 @@ pdInterval <- function(ds, n, populationD = 0) {
 }
 
 #' @export
+#' @aliases pdExtreme
 #' @rdname cohensDdistribution
 pdExtreme <- function(d, n, populationD = 0) {
   return(2 * pd(d, df=n - 2, populationD=populationD,
@@ -232,6 +238,7 @@ pdExtreme <- function(d, n, populationD = 0) {
 }
 
 #' @export
+#' @aliases pdMild
 #' @rdname cohensDdistribution
 pdMild <- function(d, n, populationD = 0) {
   return(1 - pdExtreme(d, n, populationD=populationD));

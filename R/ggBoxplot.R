@@ -30,10 +30,10 @@
 #' @examples
 #'
 #' ### A box plot for miles per gallon in the mtcars dataset:
-#' ggBoxplot(mtcars$mpg);
+#' ufs::ggBoxplot(mtcars$mpg);
 #'
 #' ### And separate for each level of 'cyl' (number of cylinder):
-#' ggBoxplot(mtcars, y='mpg', x='cyl');
+#' ufs::ggBoxplot(mtcars, y='mpg', x='cyl');
 #'
 #' @export ggBoxplot
 ggBoxplot <- function(dat, y = NULL, x = NULL,
@@ -55,15 +55,15 @@ ggBoxplot <- function(dat, y = NULL, x = NULL,
                               1:nrow(tmpDf),
                               as.numeric(NA));
       resPlot <- ggplot2::ggplot(tmpDf,
-                                 ggplot2::aes_string(y=varname)) +
+                                 ggplot2::aes(y=.data[[varname]])) +
         ggplot2::geom_boxplot(ggplot2::aes(x=factor(varname)), ...) +
         ggplot2::xlab("") + theme +
         ggplot2::theme(axis.text.x = ggplot2::element_blank(),
                        axis.ticks.x = ggplot2::element_blank());
       if (labelOutliers) {
         resPlot <- resPlot +
-        ggrepel::geom_text_repel(ggplot2::aes_string(x='1',
-                                                     label = 'outlier'),
+        ggrepel::geom_text_repel(ggplot2::aes(x=1,
+                                              label = outlier),
                                  na.rm = TRUE,
                                  color = outlierColor);
       }
@@ -100,15 +100,15 @@ ggBoxplot <- function(dat, y = NULL, x = NULL,
                             as.numeric(NA));
 
       resPlot <-
-        ggplot2::ggplot(dat, ggplot2::aes_string(y=y)) +
+        ggplot2::ggplot(dat, ggplot2::aes(y=.data[[y]])) +
         ggplot2::geom_boxplot(ggplot2::aes(x=factor(y)), ...) +
         ggplot2::xlab("") + theme +
         ggplot2::theme(axis.text.x = ggplot2::element_blank(),
                        axis.ticks.x = ggplot2::element_blank());
       if (labelOutliers) {
         resPlot <- resPlot +
-          ggrepel::geom_text_repel(ggplot2::aes_string(x='1',
-                                                       label = 'outlier'),
+          ggrepel::geom_text_repel(ggplot2::aes(x=1,
+                                                label = outlier),
                                    na.rm = TRUE,
                                    color = outlierColor);
       }
@@ -149,12 +149,12 @@ ggBoxplot <- function(dat, y = NULL, x = NULL,
                             1:nrow(dat),
                             as.numeric(NA));
 
-      resPlot <- ggplot2::ggplot(dat, ggplot2::aes_string(y=y, x=x)) +
+      resPlot <- ggplot2::ggplot(dat, ggplot2::aes(y=.data[[y]], x=.data[[x]])) +
         ggplot2::geom_boxplot(...) +
         theme;
       if (labelOutliers) {
         resPlot <- resPlot +
-          ggrepel::geom_text_repel(ggplot2::aes_string(label = 'outlier'),
+          ggrepel::geom_text_repel(ggplot2::aes(label = outlier),
                                    na.rm = TRUE,
                                    color=outlierColor);
       }

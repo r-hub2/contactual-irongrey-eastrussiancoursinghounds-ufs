@@ -5,7 +5,7 @@
 \alias{print.regrInfluential}
 \title{Detecting influential cases in regression analyses}
 \usage{
-regrInfluential(formula, data, createPlot = TRUE)
+regrInfluential(formula, data, retainColors = FALSE, createPlot = TRUE)
 
 \method{print}{regrInfluential}(x, headingLevel = 3, ...)
 }
@@ -13,6 +13,10 @@ regrInfluential(formula, data, createPlot = TRUE)
 \item{formula}{The formule of the regression analysis.}
 
 \item{data}{The data to use for the analysis.}
+
+\item{retainColors}{Added in verion 26.11 when a change in an upstream package
+(\code{GGally} or \code{ggplot2}) caused errors. Set to TRUE to retain the green and
+red coloring.}
 
 \item{createPlot}{Whether to create the scattermatrix (requires the \code{GGally}
 package to be installed).}
@@ -33,14 +37,16 @@ This function combines a number of criteria for determining whether a
 datapoint is an influential case in a regression analysis. It then sum the
 criteria to compute an index of influentiality. A list of cases with an
 index of influentiality of 1 or more is then displayed, after which the
-regression analysis is repeated without those influantial cases. A
+regression analysis is repeated without those influential cases. A
 scattermatrix is also displayed, showing the density curves of each
 variable, and in the scattermatrix, points that are colored depending on how
-influential each case is.
+influential each case is (note: see \code{retainColors} argument).
 }
 \examples{
 
-regrInfluential(mpg ~ hp, mtcars);
+ufs::regrInfluential(
+  mpg ~ hp, mtcars
+);
 
 }
 \author{

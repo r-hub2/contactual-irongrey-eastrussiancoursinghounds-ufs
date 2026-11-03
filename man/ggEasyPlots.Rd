@@ -83,18 +83,36 @@ variables, with the variables in the y axis.
 }
 \examples{
 
-ggEasyBar(mtcars, c('gear', 'carb'));
-ggEasyRidge(mtcars, c('disp', 'hp'));
+ufs::ggEasyBar(
+  mtcars,
+  c('gear', 'carb')
+);
+
+ufs::ggEasyRidge(
+  mtcars,
+  c('disp', 'hp')
+);
 
 ### When plotting single questions, if you want to show the anchors:
-ggEasyBar(mtcars, c('gear'),
-          biAxisLabels=list(leftAnchors="Fewer",
-                            rightAnchors="More"));
+ufs::ggEasyBar(
+  mtcars,
+  c('gear'),
+  biAxisLabels = list(
+    leftAnchors="Fewer",
+    rightAnchors="More"
+  )
+);
 
 ### Or for multiple questions (for e.g. semantic differentials):
-ggEasyBar(mtcars, c('gear', 'carb'),
-          biAxisLabels=list(leftAnchors=c("Fewer", "Lesser"),
-                            rightAnchors=c("More", "Greater")));
+ufs::ggEasyBar(
+  mtcars,
+  c('gear', 'carb'),
+  biAxisLabels = list(
+    leftAnchors = c("Fewer", "Lesser"),
+    rightAnchors = c("More", "Greater")
+  )
+);
+
 }
 \seealso{
 \code{\link[ggridges:geom_ridgeline]{ggridges::geom_ridgeline()}}, \code{\link[ggplot2:geom_bar]{ggplot2::geom_bar()}}

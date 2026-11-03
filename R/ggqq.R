@@ -51,7 +51,7 @@
 #' @keywords hplot
 #' @examples
 #'
-#' ggqq(mtcars$mpg);
+#' ufs::ggqq(mtcars$mpg);
 #'
 #' @export ggqq
 ggqq <- function(x, distribution = "norm", ...,
@@ -106,7 +106,7 @@ ggqq <- function(x, distribution = "norm", ...,
     df$lower <- fit.value - zz * SE;
   }
 
-  p <- ggplot2::ggplot(df, ggplot2::aes_string(x='z', y='ord.x')) +
+  p <- ggplot2::ggplot(df, ggplot2::aes(x=z, y=ord.x)) +
     ggplot2::geom_point() +
     ggplot2::geom_abline(intercept = coef[1], slope = coef[2]) +
     ggplot2::xlab(theoryLab) +
@@ -114,7 +114,7 @@ ggqq <- function(x, distribution = "norm", ...,
 
   if (ci) {
     p <- p +
-      ggplot2::geom_ribbon(ggplot2::aes_string(ymin = 'lower', ymax = 'upper'), alpha=0.2);
+      ggplot2::geom_ribbon(ggplot2::aes(ymin = lower, ymax = upper), alpha=0.2);
   }
 
   if (observedOnX) {

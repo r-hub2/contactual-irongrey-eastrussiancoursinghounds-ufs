@@ -150,8 +150,10 @@ regr <- function(formula, data=NULL, conf.level=.95, digits=2,
     if (length(res$intermediate$variables_namesOnly) == 2) {
       res$output$plot <-
         ggplot2::ggplot(res$intermediate$dat.raw,
-                        ggplot2::aes_string(y=res$intermediate$variables_namesOnly[1],
-                        x=res$intermediate$variables_namesOnly[2])) +
+                        ggplot2::aes(
+                          y = .data[[res$intermediate$variables_namesOnly[1]]],
+                          x = .data[[res$intermediate$variables_namesOnly[2]]])
+                        ) +
         ggplot2::geom_point(alpha = pointAlpha) +
         ggplot2::geom_smooth(method='lm') +
         ggplot2::theme_bw();
@@ -216,16 +218,20 @@ regr <- function(formula, data=NULL, conf.level=.95, digits=2,
 
         res$output$plot <-
           ggplot2::ggplot(res$intermediate$dat.raw,
-                          ggplot2::aes_string(y=res$intermediate$variables_namesOnly[1],
-                                              x=res$intermediate$variables_namesOnly[2])) +
+                          ggplot2::aes(
+                            y = .data[[res$intermediate$variables_namesOnly[1]]],
+                            x = .data[[res$intermediate$variables_namesOnly[2]]])
+                          ) +
           ggplot2::geom_point(alpha = pointAlpha) +
           ggplot2::geom_smooth(method='lm') +
           ggplot2::theme_bw() +
           ggplot2::geom_segment(data = moderatorDat,
-                                ggplot2::aes_string(x = 'x', xend = 'xend',
-                                                    y = 'y', yend = 'yend',
-                                                    group = res$intermediate$variables_namesOnly[3],
-                                                    color = res$intermediate$variables_namesOnly[3]),
+                                ggplot2::aes(
+                                  x = x, xend = xend,
+                                  y = y, yend = yend,
+                                  group = .data[[res$intermediate$variables_namesOnly[3]]],
+                                  color = .data[[res$intermediate$variables_namesOnly[3]]]
+                                ),
                                 size=1) +
           ggplot2::scale_color_viridis_d();
 
@@ -243,15 +249,15 @@ regr <- function(formula, data=NULL, conf.level=.95, digits=2,
         }
         res$output$plot <-
           ggplot2::ggplot(res$intermediate$dat.raw,
-                          ggplot2::aes_string(y=res$intermediate$variables_namesOnly[1],
-                                              x=predictor)) +
+                          ggplot2::aes(y = .data[[res$intermediate$variables_namesOnly[1]]],
+                                       x = .data[[predictor]])) +
           ggplot2::geom_point(alpha = pointAlpha) +
           ggplot2::geom_smooth(method='lm') +
           ggplot2::theme_bw() +
-          ggplot2::geom_smooth(ggplot2::aes_string(y=res$intermediate$variables_namesOnly[1],
-                                                   x=predictor,
-                                                   group=moderator,
-                                                   color=moderator),
+          ggplot2::geom_smooth(ggplot2::aes(y = .data[[res$intermediate$variables_namesOnly[1]]],
+                                            x = .data[[predictor]],
+                                            group = .data[[moderator]],
+                                            color = .data[[moderator]]),
                                method="lm",
                                se = FALSE) +
           ggplot2::scale_color_viridis_d();

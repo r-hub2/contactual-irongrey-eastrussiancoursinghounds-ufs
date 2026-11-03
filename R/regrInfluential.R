@@ -4,16 +4,19 @@
 #' datapoint is an influential case in a regression analysis. It then sum the
 #' criteria to compute an index of influentiality. A list of cases with an
 #' index of influentiality of 1 or more is then displayed, after which the
-#' regression analysis is repeated without those influantial cases. A
+#' regression analysis is repeated without those influential cases. A
 #' scattermatrix is also displayed, showing the density curves of each
 #' variable, and in the scattermatrix, points that are colored depending on how
-#' influential each case is.
+#' influential each case is (note: see `retainColors` argument).
 #'
 #' @param formula The formule of the regression analysis.
 #' @param data The data to use for the analysis.
 #' @param createPlot Whether to create the scattermatrix (requires the `GGally`
 #' package to be installed).
 #' @param x Object to print.
+#' @param retainColors Added in verion 26.11 when a change in an upstream package
+#' (`GGally` or `ggplot2`) caused errors. Set to TRUE to retain the green and
+#' red coloring.
 #' @param headingLevel The number of hash symbols to prepend to the heading.
 #' @param ... Additional arguments are passed on to the `regr` print function.
 #' @return A \code{regrInfluential} object, which, if printed, shows the
@@ -24,10 +27,12 @@
 #' Maintainer: Gjalt-Jorn Peters <gjalt-jorn@@userfriendlyscience.com>
 #' @examples
 #'
-#' regrInfluential(mpg ~ hp, mtcars);
+#' ufs::regrInfluential(
+#'   mpg ~ hp, mtcars
+#' );
 #'
 #' @export regrInfluential
-regrInfluential <- function(formula, data, createPlot = TRUE) {
+regrInfluential <- function(formula, data, retainColors=FALSE, createPlot = TRUE) {
 
   if (createPlot) {
     suppressMessages(suppressWarnings(
@@ -56,22 +61,46 @@ regrInfluential <- function(formula, data, createPlot = TRUE) {
                                      res$intermediate$influence.measures$infmat,
                                      indexOfInfluentiality = rowSums(res$intermediate$influence.measures$is.inf));
 
-  ### Generate scattermatrix showing index fo influentiality
+  ### Generate scattermatrix showing index of influentiality
   if (createPlot) {
-    res$output$plot <-
-      GGally::ggpairs(data=res$intermediate$dat[,
-                                                c(res$intermediate$variableNames,
-                                                  'indexOfInfluentiality')],
-              columns=1:length(res$intermediate$variableNames),
-              upper='blank',
-              lower=list(continuous=function(data, mapping, ...) {
-                res <- ggplot2::ggplot(data=data, mapping=mapping) +
-                  ggplot2::geom_point(position="jitter") +
-                  ggplot2::scale_colour_gradient(low='green', high='red') +
-                  ggplot2::theme_bw();
-                return(res);
-              }),
-              mapping=ggplot2::aes_string(colour='indexOfInfluentiality'));
+    if (!retainColors) {
+      res$output$plot <-
+        GGally::ggpairs(
+          data = res$intermediate$dat[
+            ,
+            c(res$intermediate$variableNames,
+              'indexOfInfluentiality')
+          ],
+          columns=1:length(res$intermediate$variableNames),
+          upper='blank',
+          lower=list(continuous=function(data, mapping, ...) {
+            res <- ggplot2::ggplot(data=data, mapping=mapping) +
+              ggplot2::geom_point(position="jitter") +
+              ggplot2::scale_colour_gradient(low='green', high='red') +
+              ggplot2::theme_bw();
+            return(res);
+          })
+        );
+    } else {
+      res$output$plot <-
+        GGally::ggpairs(
+          data = res$intermediate$dat[
+            ,
+            c(res$intermediate$variableNames,
+              'indexOfInfluentiality')
+          ],
+          columns=1:length(res$intermediate$variableNames),
+          upper='blank',
+          lower=list(continuous=function(data, mapping, ...) {
+            res <- ggplot2::ggplot(data=data, mapping=mapping) +
+              ggplot2::geom_point(position="jitter") +
+              ggplot2::scale_colour_gradient(low='green', high='red') +
+              ggplot2::theme_bw();
+            return(res);
+          }),
+          mapping = ggplot2::aes(colour=indexOfInfluentiality)
+        );
+    }
   }
 
   ### Conduct regression analyses for all levels of indexOfInfluentiality

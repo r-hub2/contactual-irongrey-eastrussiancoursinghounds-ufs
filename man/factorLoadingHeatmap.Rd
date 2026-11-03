@@ -37,7 +37,7 @@ colourblind readers.}
 
 \item{showLoadings}{Whether to show the factor loadings or not.}
 
-\item{heatmap}{Whether to produce a heatmap or use diamond plots.}
+\item{heatmap}{Whether to produce a heatmap or use dots.}
 
 \item{theme}{The ggplot2 theme to use.}
 
@@ -59,16 +59,13 @@ A \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}} plot with several
 \code{\link[=ggDiamondLayer]{ggDiamondLayer()}}s is returned.
 }
 \description{
-This function uses the \code{\link[=diamondPlot]{diamondPlot()}} to visualise the results of
-a factor analyses. Because the factor loadings computed in factor analysis
-are point estimates, they may vary from sample to sample. The factor
-loadings for any given sample are usually not relevant; samples are but
-means to study populations, and so, researchers are usually interested in
-population values for the factor loadings. However, tables with lots of
+This function produces a visualisation with dots indicating factor loadings.
+Tables with lots of
 loadings can quickly become confusing and intimidating. This function aims
 to facilitate working with and interpreting factor analysis based on
 confidence intervals by visualising the factor loadings and their confidence
-intervals.
+intervals. For a better visualisation, look
+at [[\code{\link[=factorLoadingDiamondCIplot]{factorLoadingDiamondCIplot()}}].
 }
 \examples{
 
@@ -77,20 +74,28 @@ intervals.
 ###  may generate warnings because of the bootstrapping of
 ###  the confidence intervals)
 
-factorLoadingHeatmap(psych::fa(psych::Bechtoldt,
-                               nfactors=2,
-                               n.iter=50,
-                               n.obs=200));
+ufs::factorLoadingHeatmap(
+  psych::fa(
+    psych::Bechtoldt,
+    nfactors=2,
+    n.iter=50,
+    n.obs=200
+  )
+);
 
 ### And using a lower alpha value for the diamonds to
 ### make them more transparent
 
-factorLoadingHeatmap(psych::fa(psych::Bechtoldt,
-                               nfactors=2,
-                               n.iter=50,
-                               n.obs=200),
-                     alpha=.5,
-                     size=1);
+ufs::factorLoadingHeatmap(
+  psych::fa(
+    psych::Bechtoldt,
+    nfactors=2,
+    n.iter=50,
+    n.obs=200),
+  alpha=.5,
+  size=1
+);
+
 }
 
 }

@@ -2,6 +2,7 @@
 % Please edit documentation in R/ggProportionPlot.R
 \name{ggProportionPlot}
 \alias{ggProportionPlot}
+\alias{print.ggProportionPlot_gtable}
 \alias{print.ggProportionPlot}
 \alias{grid.draw.ggProportionPlot}
 \title{Sample distribution based plotting of proportions}
@@ -28,6 +29,8 @@ ggProportionPlot(
   theme = ggplot2::theme_bw(),
   returnPlotOnly = TRUE
 )
+
+\method{print}{ggProportionPlot_gtable}(x, ...)
 
 \method{print}{ggProportionPlot}(x, ...)
 
@@ -137,50 +140,56 @@ ggProportionPlot(mtcars, items=c('vs', 'am'));
 ggProportionPlot(mtcars, items=c('cyl'));
 
 \dontrun{
-### Not running these to save time during package building/checking
+### These can take quite a lot of time to run
 
 ### We can also compare 4 to 6:
-ggProportionPlot(mtcars, items=c('cyl'),
-                 hiCategory=6);
+ufs::ggProportionPlot(
+  mtcars, items=c('cyl'),
+  hiCategory=6);
 
 ### Now compared to total records, instead of to
 ### highest value (hiCategory is ignored then)
-ggProportionPlot(mtcars, items=c('cyl'),
-                 compareHiToLo=FALSE);
+ufs::ggProportionPlot(
+  mtcars, items=c('cyl'),
+  compareHiToLo=FALSE);
 
 ### And for 6 cylinders:
-ggProportionPlot(mtcars, items=c('cyl'),
+ufs::ggProportionPlot(mtcars, items=c('cyl'),
                  loCategory=6, compareHiToLo=FALSE);
 
 ### And for 8 cylinders:
-ggProportionPlot(mtcars, items=c('cyl'),
-                 loCategory=8, compareHiToLo=FALSE);
+ufs::ggProportionPlot(
+  mtcars, items=c('cyl'),
+  loCategory=8, compareHiToLo=FALSE);
 
 ### And for 8 cylinders with different labels
-ggProportionPlot(mtcars, items=c('cyl'),
-                 loCategory=8,
-                 subQuestions='Cylinders',
-                 leftAnchors="Eight",
-                 rightAnchors="Four\nor\nsix",
-                 compareHiToLo=FALSE);
+ufs::ggProportionPlot(
+  mtcars, items=c('cyl'),
+  loCategory=8,
+  subQuestions='Cylinders',
+  leftAnchors="Eight",
+  rightAnchors="Four\nor\nsix",
+  compareHiToLo=FALSE);
 
 ### ... And showing the diamonds for the confidence intervals
-ggProportionPlot(mtcars, items=c('cyl'),
-                 loCategory=8,
-                 subQuestions='Cylinders',
-                 leftAnchors="Eight",
-                 rightAnchors="Four\nor\nsix",
-                 compareHiToLo=FALSE,
-                 showDiamonds=TRUE);
+ufs::ggProportionPlot(
+  mtcars, items=c('cyl'),
+  loCategory=8,
+  subQuestions='Cylinders',
+  leftAnchors="Eight",
+  rightAnchors="Four\nor\nsix",
+  compareHiToLo=FALSE,
+  showDiamonds=TRUE);
 }
 
 ### Using less steps for the confidence levels and changing
 ### the fill colours
-ggProportionPlot(mtcars,
-                 items=c('vs', 'am'),
-                 showDiamonds = TRUE,
-                 scale_fill = c("#B63679FF", "#FCFDBFFF"),
-                 conf.steps=seq(from=0.0001, to=.9999, by=.2));
+ufs::ggProportionPlot(
+  mtcars,
+  items=c('vs', 'am'),
+  showDiamonds = TRUE,
+  scale_fill = c("#B63679FF", "#FCFDBFFF"),
+  conf.steps=seq(from=0.0001, to=.9999, by=.2));
 
 }
 \seealso{
